@@ -1,4 +1,4 @@
-{% set version = "0.2.0" %}
+{% set version = "0.2.1" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/proxyC_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/proxyC/proxyC_{{ version }}.tar.gz
-  sha256: 7448e38d008d6f85a5a02631e58e2e424aea436332f8ae87f5e542343f4f0722
+  sha256: 388e6aa2ca8a9ff9f04247fa8a9a775006fa583ca442781af70bc56b5bd71fc9
 
 build:
   merge_build_host: true  # [win]
