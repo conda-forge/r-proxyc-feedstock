@@ -3,6 +3,7 @@ About r-proxyc-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-proxyc-feedstock/blob/main/LICENSE.txt)
 
+
 About r-proxyc
 --------------
 
@@ -11,6 +12,7 @@ Home: https://CRAN.R-project.org/package=proxyC
 Package license: GPL-3.0-only
 
 Summary:  Computes proximity between rows or columns of large matrices efficiently in C++. Functions are optimised for large sparse matrices using the Armadillo and Intel TBB libraries. Among several built-in similarity/distance measures, computation of correlation, cosine similarity and Euclidean distance is particularly fast. 
+
 About r-proxyc
 --------------
 
