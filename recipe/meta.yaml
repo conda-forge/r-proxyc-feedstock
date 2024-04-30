@@ -36,6 +36,7 @@ requirements:
     - {{ posix }}make
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
+    - tbb-devel
   host:
     - r-base
     - r-matrix >=1.2
