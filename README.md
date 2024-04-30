@@ -7,7 +7,7 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-proxyc-feedst
 About r-proxyc
 --------------
 
-Home: https://CRAN.R-project.org/package=proxyC
+Home: https://github.com/koheiw/proxyC
 
 Package license: GPL-3.0-only
 
@@ -16,7 +16,7 @@ Summary:  Computes proximity between rows or columns of large matrices efficient
 About r-proxyc
 --------------
 
-Home: https://CRAN.R-project.org/package=proxyC
+Home: https://github.com/koheiw/proxyC
 
 Package license: GPL-3.0-only
 
