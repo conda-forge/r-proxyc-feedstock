@@ -36,7 +36,7 @@ requirements:
     - {{ posix }}make
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
-    - tbb-devel
+    - tbb-devel                    # [not win]
   host:
     - r-base
     - r-matrix >=1.2
@@ -44,7 +44,7 @@ requirements:
     - r-rcpparmadillo >=0.7.600.1.0
     - libblas
     - liblapack
-    - tbb-devel
+    - tbb-devel                    # [not win]
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
