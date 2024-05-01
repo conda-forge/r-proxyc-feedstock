@@ -1,4 +1,4 @@
-{% set version = "0.3.4" %}
+{% set version = "0.4.1" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/proxyC_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/proxyC/proxyC_{{ version }}.tar.gz
-  sha256: f39d1d3d34b4e26694e3916002ea370b2f4e745c0992e718bb024ed03a2b78ea
+  sha256: e83d8653578b3c245d912dd5d7b03f0b2f875b206fbe3d0f328635dabf2522a8
 
 build:
   merge_build_host: true  # [win]
@@ -21,29 +21,36 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}              # [not win]
-    - {{ compiler('m2w64_c') }}        # [win]
-    - {{ compiler('cxx') }}            # [not win]
-    - {{ compiler('m2w64_cxx') }}      # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+    - {{ compiler('c') }}          # [not win]
+    - {{ compiler('m2w64_c') }}    # [win]
+    - {{ compiler('cxx') }}        # [not win]
+    - {{ compiler('m2w64_cxx') }}  # [win]
     - {{ posix }}filesystem        # [win]
-    - {{ posix }}make
     - {{ posix }}sed               # [win]
+    - {{ posix }}grep              # [win]
+    - {{ posix }}autoconf
+    - {{ posix }}automake          # [not win]
+    - {{ posix }}automake-wrapper  # [win]
+    - {{ posix }}pkg-config
+    - {{ posix }}make
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
-    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+    - tbb-devel                    # [not win]
   host:
     - r-base
     - r-matrix >=1.2
     - r-rcpp >=0.12.12
     - r-rcpparmadillo >=0.7.600.1.0
-    - r-rcppparallel
+    - libblas
+    - liblapack
+    - tbb-devel                    # [not win]
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
     - r-matrix >=1.2
     - r-rcpp >=0.12.12
     - r-rcpparmadillo >=0.7.600.1.0
-    - r-rcppparallel
 
 test:
   commands:
@@ -51,7 +58,7 @@ test:
     - "\"%R%\" -e \"library('proxyC')\""  # [win]
 
 about:
-  home: https://CRAN.R-project.org/package=proxyC
+  home: https://github.com/koheiw/proxyC
   license: GPL-3.0-only
   summary: ' Computes proximity between rows or columns of large matrices efficiently in C++. Functions are optimised for large sparse matrices using the Armadillo and Intel TBB libraries. Among several built-in similarity/distance measures, computation of correlation, cosine similarity and Euclidean distance is particularly
     fast. '
@@ -62,26 +69,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/r
-
-# Package: proxyC
-# Type: Package
-# Title: Computes Proximity in Large Sparse Matrices
-# Version: 0.1.4
-# Authors@R: c( person("Kohei", "Watanabe", email = "watanabe.kohei@gmail.com", role = c("cre", "aut", "cph"),  comment = c(ORCID = "0000-0001-6519-5265")), person("Robrecht", "Cannoodt", email = "rcannood@gmail.com", role = c("aut"), comment = c(ORCID = "0000-0003-3641-729X")) )
-# Description:  Computes proximity between rows or columns of large matrices efficiently in C++. Functions are optimised for large sparse matrices using the Armadillo and Intel TBB libraries. Among several built-in similarity/distance measures, computation of correlation, cosine similarity and Euclidean distance is particularly fast.
-# Encoding: UTF-8
-# LazyData: true
-# LinkingTo: Rcpp, RcppParallel, RcppArmadillo (>= 0.7.600.1.0)
-# BugReports: https://github.com/koheiw/proxyC/issues
-# SystemRequirements: C++11
-# License: GPL-3
-# Depends: R (>= 3.1.0), methods
-# Imports: Matrix (>= 1.2), Rcpp (>= 0.12.12), RcppParallel
-# Suggests: testthat, proxy
-# RoxygenNote: 6.1.1
-# NeedsCompilation: yes
-# Packaged: 2019-06-04 22:10:35 UTC; kohei
-# Author: Kohei Watanabe [cre, aut, cph] (<https://orcid.org/0000-0001-6519-5265>), Robrecht Cannoodt [aut] (<https://orcid.org/0000-0003-3641-729X>)
-# Maintainer: Kohei Watanabe <watanabe.kohei@gmail.com>
-# Repository: CRAN
-# Date/Publication: 2019-06-04 22:40:03 UTC
