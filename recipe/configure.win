@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -euxo pipefail
+
+echo "PKG_CPPFLAGS=-DARMA_64BIT_WORD=1 -DTBB -I\"${BUILD_PREFIX//\\//}/Library/include\" -I\"${BUILD_PREFIX//\\//}/include\"" > src/Makevars.win
+echo "PKG_LIBS=-L\"${PREFIX//\\//}/Library/lib\" -llapack -lblas -ltbb12 -fstack-protector" >> src/Makevars.win
