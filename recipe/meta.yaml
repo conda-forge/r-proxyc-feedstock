@@ -1,6 +1,5 @@
 {% set version = "0.4.1" %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-proxyc
@@ -13,8 +12,7 @@ source:
   sha256: e83d8653578b3c245d912dd5d7b03f0b2f875b206fbe3d0f328635dabf2522a8
 
 build:
-  merge_build_host: true  # [win]
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -23,7 +21,9 @@ requirements:
   build:
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
     - {{ compiler('c') }}          # [not win]
+    - {{ stdlib("c") }}            # [not win]
     - {{ compiler('m2w64_c') }}    # [win]
+    - {{ stdlib("m2w64_c") }}      # [win]
     - {{ compiler('cxx') }}        # [not win]
     - {{ compiler('m2w64_cxx') }}  # [win]
     - {{ posix }}filesystem        # [win]
@@ -47,7 +47,6 @@ requirements:
     - tbb-devel                    # [not win]
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-matrix >=1.2
     - r-rcpp >=0.12.12
     - r-rcpparmadillo >=0.7.600.1.0
