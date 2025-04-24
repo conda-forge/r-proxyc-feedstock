@@ -1,4 +1,4 @@
-{% set version = "0.5.0" %}
+{% set version = "0.5.1" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,7 +9,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/proxyC_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/proxyC/proxyC_{{ version }}.tar.gz
-  sha256: cd139cc9deff357d7ca185265bd6f6efef4dc9adb8b02c31333dbd42fcf12768
+  sha256: ff5f11e8f5c896afead435573b75632e6102ea815861059d1b776c7f95be1f40
 
 build:
   number: 0
